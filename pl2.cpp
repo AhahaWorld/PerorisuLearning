@@ -1,7 +1,7 @@
 #include "define.h"
-#if PL_TARGET == 1
+#if PL_TARGET == 2
 
-#define PL_TARGET_MIN 10
+#define PL_TARGET_MIN 0
 
 #if PL_TARGET_MIN == 1
 // learn if
