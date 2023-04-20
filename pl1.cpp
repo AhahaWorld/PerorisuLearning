@@ -4,6 +4,7 @@
 #define PL_TARGET_MIN 0
 
 #if PL_TARGET_MIN == 1
+// learn cout
 #include <iostream>
 
 int main() {
@@ -12,6 +13,7 @@ int main() {
 #endif
 
 #if PL_TARGET_MIN == 2
+// learn cout
 #include <iostream>
 
 int main() {
@@ -21,6 +23,7 @@ int main() {
 #endif
 
 #if PL_TARGET_MIN == 3
+// learn endl
 #include <iostream>
 
 int main() {
@@ -30,6 +33,7 @@ int main() {
 #endif
 
 #if PL_TARGET_MIN == 4
+// learn stream
 #include <iostream>
 
 int main() {
@@ -38,6 +42,18 @@ int main() {
 #endif
 
 #if PL_TARGET_MIN == 5
+// learn variable
+#include <iostream>
+#include <string>
+
+int main() {
+    std::string name = "perorisu";
+    std::cout << "Hello World!" << std::endl << "My name is " << name << "!" << std::endl;
+}
+#endif
+
+#if PL_TARGET_MIN == 6
+// learn cin
 #include <iostream>
 #include <string>
 
@@ -48,18 +64,16 @@ int main() {
 }
 #endif
 
-#if PL_TARGET_MIN == 6
-#include <iostream>
-#include <string>
-
-int main() {
-    std::string name = "perorisu";
-    std::cout << "Hello World!" << std::endl << "My name is " << name << "!" << std::endl;
-}
-#endif
-
 #if PL_TARGET_MIN == 7
-// TEST
+// test
+
+/*
+ * ① 名前と年齢を入力してもらいう。
+ * ② 自己紹介を画面に表示する。
+ * [例]
+ * 入力 : perorisu 19
+ * 出力
+ */
 
 #include <iostream>
 #include <string>
