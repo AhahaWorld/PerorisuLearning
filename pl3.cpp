@@ -2,7 +2,7 @@
 
 #if PL_TARGET == 3
 
-#define PL_TARGET_MIN 0
+#define PL_TARGET_MIN 1
 
 #if PL_TARGET_MIN == 1
 // example type
@@ -12,11 +12,11 @@
 
 void print_var_detail(auto var) {
     if constexpr (std::is_same_v<char, decltype(var)>) {
-        std::cout << typeid(var).name() << " : " << sizeof(var) << " : " << (int)var << std::endl;
+        std::cout << typeid(var).name() << " : " << sizeof(var) << "byte : " << (int)var << std::endl;
     } else if constexpr (std::is_same_v<unsigned char, decltype(var)>) {
-        std::cout << typeid(var).name() << " : " << sizeof(var) << " : " << (unsigned int)var << std::endl;
+        std::cout << typeid(var).name() << " : " << sizeof(var) << "byte : " << (unsigned int)var << std::endl;
     } else {
-        std::cout << typeid(var).name() << " : " << sizeof(var) << " : " << var << std::endl;
+        std::cout << typeid(var).name() << " : " << sizeof(var) << "byte : " << var << std::endl;
     }
 }
 
@@ -53,6 +53,15 @@ int main() {
     print_var_detail(four_byte_decimal);
     print_var_detail(eight_byte_decimal);
 }
+
+/*
+ * Cのtype, 型は細かくあげればもう少しあるが基本的に上記の10つを覚えておけば良い。
+ * 上記の10つはjavaなどではプリミティブ型(Primitive Value)と呼ばれ、
+ * ほとんどのプログラミング言語の型の基本である。
+ * プログラミングで変数を作るというのは、
+ * PCの内部ではのメモリーの一部を使いますよ！とOS(PC)に伝えて場所を取ってもらう事で、
+ * 一般的にメモリーを確保すると言う。
+ */
 #endif
 
 #if PL_TARGET_MIN == 2
