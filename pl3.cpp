@@ -2,7 +2,7 @@
 
 #if PL_TARGET == 3
 
-#define PL_TARGET_MIN 1
+#define PL_TARGET_MIN 0
 
 #if PL_TARGET_MIN == 1
 // example type
@@ -364,34 +364,65 @@ int main() {
 
 #if PL_TARGET_MIN == 14
 // example char
-#include <iostream>
 
 /*
  * charは-128-128(0-255)の整数を保持できると教えたが、実際に使うときはaやBや1, ?などの文字一文字に番号を振り、
  * charが持つ番号(整数)に対応させて考える。
  */
 
+#include <iostream>
+
 int main() {
-    std::cout << (char)97 << " : " << (int)'a' << std::endl;
-    std::cout << (char)66 << " : " << (int)'B' << std::endl;
-    std::cout << (char)49 << " : " << (int)'1' << std::endl;
-    std::cout << (char)63 << " : " << (int)'?' << std::endl;
+    for (char c = '0'; c <= '9'; c++) {
+        std::cout << (int)c << " : " << c << std::endl;
+    }
+    std::cout << std::endl;
+    for (char c = 'A'; c <= 'Z'; c++) {
+        std::cout << (int)c << " : " << c << std::endl;
+    }
+    std::cout << std::endl;
+    for (char c = 'a'; c <= 'z'; c++) {
+        std::cout << (int)c << " : " << c << std::endl;
+    }
 }
 
 /*
- * 元々、アルファベット小文字(26文字)+アルファベット小文字(26文字) = 52文字 < 2^6 = 64
+ * 元々、数字(10文字) + アルファベット小文字(26文字) + アルファベット小文字(26文字) = 62文字 < 2^6 = 64
  * でアルファベット全てに番号つけるのに6bitで足りるので、一文字6bitだった、
  * その後制御文字(LF(Line Feed)='¥n')などや!, ?などの記号を足した7bitの"ASCII"と呼ばれる文字コードが誕生した。
  * (文字コードとは94番がaのような番号と文字の組み合わせを決めたもの)
  * その後、8bit, 32bit, 64bitなど8*nのbitを基本として操作するCPUが一般的になり、
  * 一番小さい8bitを一文字(char)とした。
+ *
+ * 実行してみて貰えばわかるが、0-9, a-z, A-Zは数値が連続している。
+ *
  * 文字コード : ASCII, shift-jis, utf-8...
  * (マルチバイト文字などは後述する)
  */
 #endif
 
 #if PL_TARGET_MIN == 15
+// learn char <=> int
+
+/*
+ * ここで文字コードが数値で連続していると学んだら一つできるようになることがある。
+ * それが数字一文字と一桁の整数の変換だ。
+ */
+
+#include <stdio.h>
+
+int main() {
+    char a_char = getchar(), b_char = getchar();
+    int a_int = a_char - '0', b_int = b_char - '0';
+    putchar('0' + a_int + b_int);
+    // '0' < '0' + a_int + b_int < '9' 出ないと数字じゃない何かが表示されてしまうので、
+    // 1+8 などの答えが0以上9以下の計算しかできない。
+}
+#endif
+
+#if PL_TARGET_MIN == 16
 // learn getchar() putchar()
+#include <stdio.h>
 
 int main() {
     // C言語で一文字を入力してもらうときはgetchar()を使い、
@@ -399,14 +430,16 @@ int main() {
     // C言語で一文字を出力するときはputchar()を使う。
     putchar(character);
 }
+
 /*
  * C++では基本的にI/Oの命名(名前)にそのままin/out(例:cin/cout)を使うが、
  * C言語ではget/putやread/writeをよく使う。
  */
 #endif
 
-#if PL_TARGET_MIN == 16
+#if PL_TARGET_MIN == 17
 // learn C string
+#include <stdio.h>
 
 int main() {
     char str[] = "kore ga c no yarikata ka----";

@@ -6,5 +6,7 @@ set(CMAKE_CXX_COMPILER "g++")
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(PerorisuLearning define.h pl1.cpp pl2.cpp pl3.cpp pl4.cpp)
+add_executable(PerorisuLearning define.h pl1.cpp pl2.cpp pl3.cpp pl4.cpp pl5.cpp)
+
+target_compile_options(PerorisuLearning PUBLIC -O3)
 target_compile_features(PerorisuLearning PUBLIC cxx_std_20)
